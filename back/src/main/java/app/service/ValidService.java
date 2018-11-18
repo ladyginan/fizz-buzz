@@ -1,8 +1,8 @@
-package app.service.interfaces;
+package app.service;
 
 import java.util.List;
 
-public interface ValidServiceInterface {
+public interface ValidService {
     /**
      * This method check elements from List<String> for valid.
      * If element have size more then 3, it is not valid.
