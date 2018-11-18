@@ -1,31 +1,30 @@
 package service;
 
+import app.service.impl.FizzBuzzServiceImpl;
 import app.service.FizzBuzzService;
-import app.service.interfaces.FizzBuzzServiceInterface;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class FizzBuzzServiceTest {
+public class FizzBuzzServiceImplTest {
 
-    @InjectMocks
-    private FizzBuzzServiceInterface fizzBuzzService = new FizzBuzzService();
+    @Autowired
+    private FizzBuzzService fizzBuzzService = new FizzBuzzServiceImpl();
 
-    private List<Long> list;
+    private List<String> list;
 
     @BeforeEach
     void init() {
         list = new ArrayList<>();
        for(int i = 0; i<=10 ; i++){
-           list.add((long)(10*Math.random()));
+           list.add(String.valueOf(10*Math.random()));
         }
 //        list.stream().forEach(
 //                x->{
@@ -37,7 +36,7 @@ public class FizzBuzzServiceTest {
     @Test
     void giveResult(){
         System.out.print(list);
-        List<String> listFromBuzzServ =  fizzBuzzService.giveResult(list);
+        List<String> listFromBuzzServ =  fizzBuzzService.replacementProcess(list);
         System.out.print(listFromBuzzServ);
         Assertions.assertTrue(listFromBuzzServ.get(1).getClass().equals(String.class));
     }
