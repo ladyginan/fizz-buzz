@@ -1,15 +1,15 @@
 <template>
   <v-flex>
-    <HelloWorld />
+    <Game />
   </v-flex>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+  import Game from '../components/Game'
 
   export default {
     components: {
-      HelloWorld
+      Game
     }
   }
 </script>
