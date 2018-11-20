@@ -11,10 +11,8 @@ public class ValidationServiceImpl implements ValidService {
     private boolean valid;
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ValidService.class);
 
-
-
-
     public boolean isValidSizeOfNumber(List<String> list){
+        log.info("Validation size method is started");
         valid = true;
         list.forEach(
                 x->{
@@ -22,10 +20,6 @@ public class ValidationServiceImpl implements ValidService {
                         valid = false;
                         log.info("This number have extra size - " + x);
                     }
-//                    if(x.length()<1){
-//                        valid = false;
-//                        log.info("This number is null- " + x);
-//                    }
                 }
         );
         return valid;

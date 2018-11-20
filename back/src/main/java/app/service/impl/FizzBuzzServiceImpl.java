@@ -1,40 +1,42 @@
 package app.service.impl;
 
+import app.model.ResponseFizzBuzz;
 import app.service.FizzBuzzService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(FizzBuzzService.class);
-    private List<String> list = new ArrayList<>();
+    private List<String> strings = new ArrayList<>();
 
     @Override
-    public List<String> replacementProcess(List<String> listOfAnswer) {
-        List<Long> listOfLongValues = new ArrayList<>();
-        list.stream().forEach(i -> listOfLongValues.add(Long.valueOf(i)));
-        list = new ArrayList<>();
-        log.info("The list is clear.");
+    public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) {
+        List<Long> longs = listOfAnswer.stream().map(Long::valueOf).collect(toList());
+        strings.clear();
+        log.info("The strings is clear.");
         log.info("Started replacementProcess method.");
-        listOfLongValues.stream().forEach(
+        longs.stream().forEach(
                 (i) -> {
                     if (i % 15 == 0) {
-                        list.add("Fizz Buzz");
+                        strings.add("Fizz Buzz");
                     } else if (i % 3 == 0) {
-                        list.add("Fizz");
+                        strings.add("Fizz");
                     } else if (i % 5 == 0) {
-                        list.add("Buzz");
+                        strings.add("Buzz");
                     } else {
-                        list.add(String.valueOf(i));
+                        strings.add(String.valueOf(i));
                     }
-                    log.debug("Iteration is completed");
+                    log.debug("Iteration in replacement method is completed");
                 }
         );
-        log.info("The iteration is completed.");
-        return list;
+        log.info("List is changed");
+        return new ResponseFizzBuzz(strings);
     }
 
 }

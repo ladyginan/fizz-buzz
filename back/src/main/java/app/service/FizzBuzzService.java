@@ -1,5 +1,7 @@
 package app.service;
 
+import app.model.ResponseFizzBuzz;
+
 import java.util.List;
 
 
@@ -13,5 +15,5 @@ public interface FizzBuzzService {
      * @return List of elements
      */
 
-    List<String> replacementProcess(List<String> list);
+    ResponseFizzBuzz replacementProcess(List<String> list);
 }
