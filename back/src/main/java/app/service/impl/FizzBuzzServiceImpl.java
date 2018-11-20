@@ -13,12 +13,11 @@ import static java.util.stream.Collectors.toList;
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(FizzBuzzService.class);
-    private List<String> strings = new ArrayList<>();
 
     @Override
     public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) {
+        List<String> strings = new ArrayList<>();
         List<Long> longs = listOfAnswer.stream().map(Long::valueOf).collect(toList());
-        strings.clear();
         log.info("The strings is clear.");
         log.info("Started replacementProcess method.");
         longs.stream().forEach(
@@ -32,7 +31,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     } else {
                         strings.add(String.valueOf(i));
                     }
-                    log.debug("Iteration in replacement method is completed");
+                    log.debug("Iteration in replacement method is completed ");
                 }
         );
         log.info("List is changed");
