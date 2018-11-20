@@ -11,6 +11,7 @@ public interface FizzBuzzService {
      * multiples of three - "Fizz"
      * multiples of five - "Buzz"
      * multiples of five and three - "Fizz"
+     *
      * @param list List of String elements from user's input
      * @return List of elements
      */

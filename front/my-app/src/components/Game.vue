@@ -55,29 +55,7 @@
                         </v-item>
                     </v-item-group>
                 </v-card>
-
             </v-flex>
-            <!--<v-layout justify-center>-->
-                <!--<v-flex xs6 mt-5>-->
-                    <!--<v-card class="elevation-10">-->
-                        <!--<v-card-title> <div class="headline">The answers:</div></v-card-title>-->
-                        <!--<v-list two-line>-->
-                            <!--<template v-for="(tem, index) in results.replacedList">-->
-
-                                <!--<v-subheader-->
-                                        <!--:key="index"-->
-                                <!--&gt;-->
-                                    <!--{{ tem }}-->
-                                <!--</v-subheader>-->
-
-                            <!--</template>-->
-                        <!--</v-list>-->
-                        <!--&lt;!&ndash;<div>{{tem}}</div>&ndash;&gt;-->
-
-                    <!--</v-card>-->
-                <!--</v-flex>-->
-            <!--</v-layout>-->
-
         </v-layout>
     </v-container>
 </template>
@@ -99,8 +77,10 @@
             submit () {
                 http.post('/fizzBuzz', this.answers)
                     .then(response => (this.results = response.data))
-                    .catch(error => console.log(error));
-                console.log(JSON.stringify(this.results))
+                    .catch(
+                        error => console.log(error.response.status)
+                    );
+                console.log(JSON.stringify(this.response))
             },
             addToList(){
                 this.answers.push(this.answer);
@@ -110,13 +90,6 @@
                 this.results = [];
             }
         },
-
-        // computed: {
-        //     // геттер вычисляемого значения
-        //     lost: function () {
-        //         return this.$router.push("LostPage");
-        //     }
-        //   }
     }
 </script>
 

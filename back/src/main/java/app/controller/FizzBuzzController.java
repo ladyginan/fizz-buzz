@@ -27,9 +27,10 @@ public class FizzBuzzController {
     }
 
     @PostMapping("/fizzBuzz")
-    public ResponseEntity<ResponseFizzBuzz> filterFizzBuzz(@RequestBody List<String> list){
-        if(validService.isValidSizeOfNumber(list)) {
-            return new ResponseEntity<>(fizzBuzzService.replacementProcess(list),HttpStatus.OK);}
+    public ResponseEntity<ResponseFizzBuzz> filterFizzBuzz(@RequestBody List<String> list) {
+        if (validService.isValidSizeOfNumber(list)) {
+            return new ResponseEntity<>(fizzBuzzService.replacementProcess(list), HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 

@@ -2,6 +2,8 @@ package app.service.impl;
 
 import app.model.ResponseFizzBuzz;
 import app.service.FizzBuzzService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,13 +14,12 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(FizzBuzzService.class);
+    private static final Logger log = LoggerFactory.getLogger(FizzBuzzService.class);
 
     @Override
     public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) {
         List<String> strings = new ArrayList<>();
         List<Long> longs = listOfAnswer.stream().map(Long::valueOf).collect(toList());
-        log.info("The strings is clear.");
         log.info("Started replacementProcess method.");
         longs.stream().forEach(
                 (i) -> {
@@ -31,7 +32,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     } else {
                         strings.add(String.valueOf(i));
                     }
-                    log.debug("Iteration in replacement method is completed ");
+                    log.debug("Iteration in replacement method is completed.");
                 }
         );
         log.info("List is changed");
