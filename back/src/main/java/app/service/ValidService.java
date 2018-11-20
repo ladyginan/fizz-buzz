@@ -11,4 +11,6 @@ public interface ValidService {
      * @return boolean
      */
     boolean isValidSizeOfNumber(List<String> list);
+
+    boolean isPositiveNumber(List<String> list);
 }

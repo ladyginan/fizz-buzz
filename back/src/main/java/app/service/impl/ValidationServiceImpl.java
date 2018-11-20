@@ -1,6 +1,8 @@
 package app.service.impl;
 
 import app.service.ValidService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 @Service
 public class ValidationServiceImpl implements ValidService {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ValidService.class);
+    private static final Logger log = LoggerFactory.getLogger(ValidService.class);
     private boolean valid;
 
     public boolean isValidSizeOfNumber(List<String> list) {
@@ -22,6 +24,13 @@ public class ValidationServiceImpl implements ValidService {
                     }
                 }
         );
+        return valid;
+    }
+
+    public boolean isPositiveNumber(List<String> list){
+        log.info("Validation isPositive method is started.");
+        valid = true;
+        valid = !(list.stream().allMatch(x -> x.contains("-")));
         return valid;
     }
 }

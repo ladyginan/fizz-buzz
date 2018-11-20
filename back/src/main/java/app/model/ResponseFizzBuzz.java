@@ -1,9 +1,8 @@
 package app.model;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class ResponseFizzBuzz implements Serializable {
+public class ResponseFizzBuzz {
     private List<String> replacedList;
 
     public ResponseFizzBuzz(List<String> replacedList) {

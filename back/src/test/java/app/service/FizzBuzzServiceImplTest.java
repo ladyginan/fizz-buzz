@@ -6,7 +6,6 @@ import app.service.FizzBuzzService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
-//@ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = WebConfig.class)
 public class FizzBuzzServiceImplTest {
@@ -38,11 +36,22 @@ public class FizzBuzzServiceImplTest {
     }
 
     @Test
-    public void isFizzFilterWorking() {
+    public void isReplacementProcessWorking() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(strings);
         List<Long> longs = strings.stream().map(Long::valueOf).collect(toList());
         long countLongs = longs.stream().filter((i) -> i % 15 == 0).count();
         long countStrings = response.getReplacedList().stream().filter((i) -> i.equals("Fizz Buzz")).count();
+
+        assertEquals(countLongs, countStrings);
+
+        countLongs= longs.stream().filter((i) -> i % 3 == 0 && i%15!=0).count();
+        countStrings = response.getReplacedList().stream().filter((i) -> i.equals("Fizz")).count();
+
+        assertEquals(countLongs, countStrings);
+
+        countLongs = longs.stream().filter((i) -> i % 5 == 0 && i%15!=0).count();
+        countStrings = response.getReplacedList().stream().filter((i) -> i.equals("Buzz")).count();
+
         assertEquals(countLongs, countStrings);
 
     }

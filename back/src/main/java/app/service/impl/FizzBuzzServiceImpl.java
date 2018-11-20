@@ -4,6 +4,7 @@ import app.model.ResponseFizzBuzz;
 import app.service.FizzBuzzService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,13 +16,12 @@ import static java.util.stream.Collectors.toList;
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
     private static final Logger log = LoggerFactory.getLogger(FizzBuzzService.class);
-
     @Override
-    public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) {
+    public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) throws NumberFormatException {
         List<String> strings = new ArrayList<>();
         List<Long> longs = listOfAnswer.stream().map(Long::valueOf).collect(toList());
         log.info("Started replacementProcess method.");
-        longs.stream().forEach(
+        longs.forEach(
                 (i) -> {
                     if (i % 15 == 0) {
                         strings.add("Fizz Buzz");
