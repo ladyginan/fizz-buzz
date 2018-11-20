@@ -1,7 +1,6 @@
 package app.service;
 
 import app.conf.WebConfig;
-import app.service.impl.ValidationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

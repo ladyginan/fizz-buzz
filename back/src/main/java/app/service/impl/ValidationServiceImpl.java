@@ -30,7 +30,14 @@ public class ValidationServiceImpl implements ValidService {
     public boolean isPositiveNumber(List<String> list){
         log.info("Validation isPositive method is started.");
         valid = true;
-        valid = !(list.stream().allMatch(x -> x.contains("-")));
+        list.forEach(
+                x -> {
+                    if ((Long.valueOf(x))<0) {
+                        valid = false;
+                        log.info("This number is negative - " + x);
+                    }
+                }
+        );
         return valid;
     }
 }
