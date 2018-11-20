@@ -20,19 +20,19 @@ public class ValidationServiceImpl implements ValidService {
                 x -> {
                     if (x.length() > 18) {
                         valid = false;
-                        log.info("This number have extra size - " + x);
+                        log.info("This number has extra size - " + x);
                     }
                 }
         );
         return valid;
     }
 
-    public boolean isPositiveNumber(List<String> list){
+    public boolean isPositiveNumber(List<String> list) {
         log.info("Validation isPositive method is started.");
         valid = true;
         list.forEach(
                 x -> {
-                    if ((Long.valueOf(x))<0) {
+                    if ((Long.valueOf(x)) < 0) {
                         valid = false;
                         log.info("This number is negative - " + x);
                     }

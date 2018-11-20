@@ -4,7 +4,6 @@ import app.model.ResponseFizzBuzz;
 import app.service.FizzBuzzService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import static java.util.stream.Collectors.toList;
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
     private static final Logger log = LoggerFactory.getLogger(FizzBuzzService.class);
+
     @Override
     public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) throws NumberFormatException {
         List<String> strings = new ArrayList<>();

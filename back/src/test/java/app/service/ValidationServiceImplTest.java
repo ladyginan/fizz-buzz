@@ -40,14 +40,15 @@ public class ValidationServiceImplTest {
         negativeValues.add("-1");
 
     }
+
     @Test
-    void isPositiveNumber(){
+    void isPositiveNumber() {
         assertTrue(validationService.isPositiveNumber(strings));
         assertFalse(validationService.isPositiveNumber(negativeValues));
     }
 
     @Test
-    void isValidSizeOfNumber(){
+    void isValidSizeOfNumber() {
         assertTrue(validationService.isValidSizeOfNumber(strings));
         strings.add("1111111111111111111111111111111111111111");
         assertFalse(validationService.isValidSizeOfNumber(strings));

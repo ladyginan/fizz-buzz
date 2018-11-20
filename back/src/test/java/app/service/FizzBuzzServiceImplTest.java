@@ -44,12 +44,12 @@ public class FizzBuzzServiceImplTest {
 
         assertEquals(countLongs, countStrings);
 
-        countLongs= longs.stream().filter((i) -> i % 3 == 0 && i%15!=0).count();
+        countLongs = longs.stream().filter((i) -> i % 3 == 0 && i % 15 != 0).count();
         countStrings = response.getReplacedList().stream().filter((i) -> i.equals("Fizz")).count();
 
         assertEquals(countLongs, countStrings);
 
-        countLongs = longs.stream().filter((i) -> i % 5 == 0 && i%15!=0).count();
+        countLongs = longs.stream().filter((i) -> i % 5 == 0 && i % 15 != 0).count();
         countStrings = response.getReplacedList().stream().filter((i) -> i.equals("Buzz")).count();
 
         assertEquals(countLongs, countStrings);

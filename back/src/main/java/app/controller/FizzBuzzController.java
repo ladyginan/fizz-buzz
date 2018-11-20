@@ -33,11 +33,11 @@ public class FizzBuzzController implements Serializable {
     @PostMapping("/fizzBuzz")
     public ResponseEntity<ResponseFizzBuzz> filterFizzBuzz(@RequestBody List<String> list) {
         try {
-            if (validService.isValidSizeOfNumber(list) && validService.isPositiveNumber(list)){
+            if (validService.isValidSizeOfNumber(list) && validService.isPositiveNumber(list)) {
                 return new ResponseEntity<>(fizzBuzzService.replacementProcess(list), HttpStatus.OK);
             }
         } catch (NumberFormatException e) {
-            log.debug("This number, is invalid.");
+            log.debug("This number is invalid.");
             e.printStackTrace();
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
