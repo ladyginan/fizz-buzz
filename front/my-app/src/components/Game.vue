@@ -15,7 +15,7 @@
                                         solo
                                         v-model="answer"
                                         :rules="answerRules"
-                                        counter="16"
+                                        counter="18"
                                 ></v-text-field>
                             </v-flex>
                             <v-flex>
@@ -59,31 +59,12 @@
                     </v-item-group>
                 </v-card>
             </v-flex>
-            <!--<v-snackbar-->
-                    <!--v-model="snackbar"-->
-                    <!--:bottom="y === 'bottom'"-->
-                    <!--:left="x === 'left'"-->
-                    <!--:multi-line="mode === 'multi-line'"-->
-                    <!--:right="x === 'right'"-->
-                    <!--:timeout="timeout"-->
-                    <!--:top="y === 'top'"-->
-                    <!--:vertical="mode === 'vertical'"-->
-            <!--&gt;-->
-                <!--{{ text }}-->
-                <!--<v-btn-->
-                        <!--color="pink"-->
-                        <!--flat-->
-                        <!--@click="snackbar = false"-->
-                <!--&gt;-->
-                    <!--Close-->
-                <!--</v-btn>-->
-            <!--</v-snackbar>-->
+
         </v-layout>
     </v-container>
 </template>
 
 <script>
-    /* eslint-disable vue/no-side-effects-in-computed-properties,vue/return-in-computed-property */
 
     import http from "../http-common";
 
@@ -95,16 +76,10 @@
             lost: false,
             answer: '',
             answers: [],
-            snackbar: false,
-            y: 'bottom',
-            x: 'right',
-            mode: '',
-            timeout: 6000,
-            text: "The list is sended",
             valid: true,
             answerRules: [
                 (v) => !!v || 'The number is required',
-                (v) => v && v.length <= 18 || 'The number must be less than 10 characters'
+                (v) => v && v.length <= 18 || 'The number must be less than 18 characters'
             ],
             status: ''
         }),
@@ -112,7 +87,7 @@
         methods: {
             submit() {
 
-                http.post('/fizzBuzz', this.answers)
+                http.get('/fizzBuzz/'+ this.answers)
                     .then(response =>
                         (this.results = response.data,
                                 this.status = response.status,
@@ -121,7 +96,6 @@
                     .catch(
                         error => console.log(error),
                     );
-                this.snackbar = true
 
             },
             addToList() {
@@ -132,15 +106,6 @@
                 this.results = [];
             }
         },
-        watch: {
-            status: function () {
-                if (this.status === 200) {
-                    this.text = "The list is sended"
-                } else {
-                    this.text = "Something went wrong."
-                }
-            }
-        }
     }
 </script>
 
