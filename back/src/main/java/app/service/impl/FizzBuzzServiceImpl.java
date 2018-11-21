@@ -20,7 +20,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
     public ResponseFizzBuzz replacementProcess(List<String> listOfAnswer) throws NumberFormatException {
         List<String> strings = new ArrayList<>();
         List<Long> longs = listOfAnswer.stream().map(Long::valueOf).collect(toList());
-        log.info("Started replacementProcess method.");
+        log.debug("Started replacementProcess method.");
         longs.forEach(
                 (i) -> {
                     if (i % 15 == 0) {
@@ -35,7 +35,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     log.debug("Iteration in replacement method is completed.");
                 }
         );
-        log.info("List is changed");
+        log.debug("List is changed");
         return new ResponseFizzBuzz(strings);
     }
 

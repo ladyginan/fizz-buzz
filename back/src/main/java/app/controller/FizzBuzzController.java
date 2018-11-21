@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.model.ResponseFizzBuzz;
 import app.service.FizzBuzzService;
 import app.service.ValidService;
 import org.slf4j.Logger;
@@ -29,16 +28,17 @@ public class FizzBuzzController {
     }
 
     @PostMapping(path = "/fizzBuzz", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseFizzBuzz> filterFizzBuzz(@RequestBody List<String> list) {
-        try {
-            if (validService.isValidSizeOfNumber(list) && validService.isPositiveNumber(list)) {
+    public ResponseEntity filterFizzBuzz(@RequestBody List<String> list) {
+        if (validService.isValidSizeOfNumber(list) && validService.isPositiveNumber(list)) {
+            try {
                 return new ResponseEntity<>(fizzBuzzService.replacementProcess(list), HttpStatus.OK);
+            } catch (NumberFormatException e) {
+                log.info("Some of given numbers are invalid");
+                return new ResponseEntity<>("Some of given numbers are invalid", HttpStatus.BAD_REQUEST);
             }
-        } catch (NumberFormatException e) {
-            log.debug("This number is invalid.");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            log.info("Some of given numbers are too big or not positive.");
+            return new ResponseEntity<>("Some of given numbers are too big or not positive.", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
 }
