@@ -1,9 +1,8 @@
 package app.service;
 
-
 import app.model.ResponseFizzBuzz;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,12 +13,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class FizzBuzzServiceImplTest {
+public class FizzBuzzServiceImplTest {
 
     private List<String> strings;
     @Autowired
@@ -82,39 +81,16 @@ class FizzBuzzServiceImplTest {
     }
 
     @Test
-    void isReplacementFizzBuzzCorrect() {
+    public void isReplacementBuzzBuzzCorrect() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("1", "2", "15"));
 
         assertEquals(response.getReplacedList(), Arrays.asList("1", "2", "Fizz Buzz"));
     }
 
-    @Test
-    void isReplacementFizzBuzzException() {
-
-        assertThrows(NumberFormatException.class, () -> {
-            fizzBuzzService.replacementProcess(Arrays.asList("1", "2", "3333333333333333333333333333333"));
-        });
+    @Test(expected = NumberFormatException.class)
+    public void isReplacementBuzzBuzzException() {
+        fizzBuzzService.replacementProcess(Arrays.asList("1", "2", "3333333333333333333333333333333"));
     }
 
-    @Test
-    void isReplacementFizzInCorrect() {
-        ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("11", "20", "3"));
-
-        assertNotEquals(response.getReplacedList(), Arrays.asList("11", "20", "Fizz"));
-    }
-
-    @Test
-    void isReplacementBuzzInCorrect() {
-        ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("1", "33", "5"));
-
-        assertNotEquals(response.getReplacedList(), Arrays.asList("1", "Fizz Buzz", "Buzz"));
-    }
-
-    @Test
-    void isReplacementFizzBuzzInCorrect() {
-        ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("1", "3", "31"));
-
-        assertNotEquals(response.getReplacedList(), Arrays.asList("1", "2", "Fizz Buzz"));
-    }
 
 }
