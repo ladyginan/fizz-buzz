@@ -39,9 +39,9 @@ After you can go to a browser at http://localhost:8090.
 
 ## Technology
 
-The backend was written in Java with Spring Boot. This is built with maven. This app can start on embedded tomcat.
+The backend was written in Java with Spring Boot and built with maven. This application can start on embedded tomcat.
 
-The frontend was created with vueJs by vue-cli. The frontend has one UI interfaces with an input field and submit button. 
+The frontend was created with vueJs by vue-cli. The frontend has one UI interfaces with an input field and a submit button. 
 Applications are connecting through HTTP requests. 
 
 ## What can be improved
