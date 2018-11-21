@@ -20,7 +20,7 @@ maven clean install
  For launch backend of application
  
  ```
-  maven spring-boot:run
+ maven spring-boot:run
 ```
 
 For frontend setup
