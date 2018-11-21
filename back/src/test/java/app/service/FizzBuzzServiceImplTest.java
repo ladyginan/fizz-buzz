@@ -20,12 +20,13 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class FizzBuzzServiceImplTest {
 
-    private List<String> strings;
     @Autowired
     private FizzBuzzService fizzBuzzService;
 
-    @BeforeEach
-    void init() {
+    private List<String> strings;
+
+    @Before
+    public void init() {
         strings = new ArrayList<>();
         for (int i = 0; i <= 10; i++) {
             strings.add(String.valueOf((int) (10 * Math.random())));
@@ -33,7 +34,7 @@ public class FizzBuzzServiceImplTest {
     }
 
     @Test
-    void isReplacementProcessWorkingFizzBuzz() {
+    public void isReplacementProcessWorkingFizzBuzz() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(strings);
         List<Long> longs = strings.stream().map(Long::valueOf).collect(toList());
 
@@ -44,7 +45,7 @@ public class FizzBuzzServiceImplTest {
     }
 
     @Test
-    void isReplacementProcessWorkingFizz() {
+    public void isReplacementProcessWorkingFizz() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(strings);
         List<Long> longs = strings.stream().map(Long::valueOf).collect(toList());
 
@@ -55,7 +56,7 @@ public class FizzBuzzServiceImplTest {
     }
 
     @Test
-    void isReplacementProcessWorkingBuzz() {
+    public void isReplacementProcessWorkingBuzz() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(strings);
         List<Long> longs = strings.stream().map(Long::valueOf).collect(toList());
 
@@ -67,14 +68,14 @@ public class FizzBuzzServiceImplTest {
     }
 
     @Test
-    void isReplacementFizzCorrect() {
+    public void isReplacementFizzCorrect() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("1", "2", "3"));
 
         assertEquals(response.getReplacedList(), Arrays.asList("1", "2", "Fizz"));
     }
 
     @Test
-    void isReplacementBuzzCorrect() {
+    public void isReplacementBuzzCorrect() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("1", "2", "5"));
 
         assertEquals(response.getReplacedList(), Arrays.asList("1", "2", "Buzz"));

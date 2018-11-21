@@ -20,4 +20,13 @@ public interface ValidService {
      * @return boolean
      */
     boolean isPositiveNumber(List<String> list);
+
+    /**
+     * Validation method.
+     * If element isn't a number, it is not valid.
+     *
+     * @param list List of String elements from user's input
+     * @return
+     */
+    boolean isNumber(List<String> list);
 }

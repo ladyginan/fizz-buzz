@@ -12,13 +12,27 @@ public class ValidationServiceImpl implements ValidService {
 
     private static final Logger log = LoggerFactory.getLogger(ValidService.class);
 
+    @Override
     public boolean isValidSizeOfNumber(List<String> list) {
         log.debug("Validation size method is started.");
         return list.stream().noneMatch(s -> s.length() > 18);
     }
 
+    @Override
     public boolean isPositiveNumber(List<String> list) {
         log.debug("Validation isPositive method is started.");
         return list.stream().noneMatch(s -> (Long.valueOf(s)) < 0);
+    }
+
+    @Override
+    public boolean isNumber(List<String> list) {
+        log.debug("Validation isNumber method is started.");
+        try {
+            list.forEach(Long::valueOf);
+        } catch (NumberFormatException e) {
+            log.info("Input string is not a number: ", e.getCause());
+            return false;
+        }
+        return true;
     }
 }

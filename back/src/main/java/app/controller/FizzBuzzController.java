@@ -6,10 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,18 +26,19 @@ public class FizzBuzzController {
         this.validService = validService;
     }
 
-    @PostMapping(path = "/fizzBuzz", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity filterFizzBuzz(@RequestBody List<String> list) {
-        if (validService.isValidSizeOfNumber(list) && validService.isPositiveNumber(list)) {
+    @GetMapping(path = "/fizzBuzz/{numbers}")
+    public ResponseEntity filterFizzBuzz(@PathVariable List<String> numbers) {
+        if (validService.isNumber(numbers) && validService.isValidSizeOfNumber(numbers) && validService.isPositiveNumber(numbers)) {
             try {
-                return new ResponseEntity<>(fizzBuzzService.replacementProcess(list), HttpStatus.OK);
+                return new ResponseEntity<>(fizzBuzzService.replacementProcess(numbers), HttpStatus.OK);
             } catch (NumberFormatException e) {
                 log.info("Some of given numbers are invalid");
                 return new ResponseEntity<>("Some of given numbers are invalid", HttpStatus.BAD_REQUEST);
             }
         } else {
-            log.info("Some of given numbers are too big or not positive.");
-            return new ResponseEntity<>("Some of given numbers are too big or not positive.", HttpStatus.BAD_REQUEST);
+            log.info("Some of given numbers are not a numbers or too big or not positive.");
+            return new ResponseEntity<>("Some of given numbers are not a numbers or too big or not positive.", HttpStatus.BAD_REQUEST);
         }
     }
+
 }

@@ -1,51 +1,64 @@
 package app.controller;
 
-import app.conf.WebConfig;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = WebConfig.class)
-class FizzBuzzControllerTest {
+public class FizzBuzzControllerTest {
 
-    private List<String> strings;
+    @Autowired
+    private WebApplicationContext context;
     private MockMvc mockMvc;
 
-    @BeforeEach
-    void init() {
-        strings = new ArrayList<>();
-        for (int i = 0; i <= 10; i++) {
-            strings.add(String.valueOf((int) (10 * Math.random())));
-        }
-    }
-
-    @BeforeEach
-    void setup(WebApplicationContext wac) {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    @Before
+    public void before() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
+                .build();
     }
 
     @Test
-    void filterFizzBuzz() throws Exception {
-        this.mockMvc.perform(post("/fizzBuzz")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content("{\"1\" : \"2\"\n" +
-                        "  \"1\" : \"2\"}"))
+    public void checkFizz() throws Exception {
+        this.mockMvc.perform(get("/fizzBuzz/1,2,3"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"));
+                .andExpect(content().string(containsString("Fizz")));
+    }
+
+    @Test
+    public void checkBuzz() throws Exception {
+        this.mockMvc.perform(get("/fizzBuzz/1,2,5"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Buzz")));
+    }
+
+    @Test
+    public void checkFizzBuzz() throws Exception {
+        this.mockMvc.perform(get("/fizzBuzz/1,2,15"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Fizz Buzz")));
+    }
+
+    @Test
+    public void checkInvalidInput() throws Exception {
+        this.mockMvc.perform(get("/fizzBuzz/asd"))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("Some of given numbers are not a numbers or too big or not positive.")));
     }
 }
