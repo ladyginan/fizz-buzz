@@ -41,13 +41,33 @@ public class ValidationServiceImplTest {
     @Test
     public void isPositiveNumber() {
         assertTrue(validationService.isPositiveNumber(strings));
+    }
+
+    @Test
+    public void isNegativeNumber(){
         assertFalse(validationService.isPositiveNumber(negativeValues));
     }
 
     @Test
     public void isValidSizeOfNumber() {
         assertTrue(validationService.isValidSizeOfNumber(strings));
+
+    }
+
+    @Test
+    public void isInvalidSizeOfNumber(){
         strings.add("1111111111111111111111111111111111111111");
         assertFalse(validationService.isValidSizeOfNumber(strings));
+    }
+
+    @Test
+    public void isNumber(){
+        assertTrue(validationService.isNumber(strings));
+    }
+
+    @Test
+    public void isNotNumber(){
+        strings.add("qwerty");
+        assertFalse(validationService.isNumber(strings));
     }
 }

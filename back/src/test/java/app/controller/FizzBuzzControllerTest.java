@@ -61,4 +61,20 @@ public class FizzBuzzControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(containsString("Some of given numbers are not a numbers or too big or not positive.")));
     }
+
+    @Test
+    public void checkTooBigValue() throws Exception {
+        this.mockMvc.perform(get("/fizzBuzz/1,2,333333333333333333333333"))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("Some of given numbers are not a numbers or too big or not positive.")));
+    }
+
+    @Test
+    public void checkNotPositiveInput() throws Exception {
+        this.mockMvc.perform(get("/fizzBuzz/1,2,-3"))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("Some of given numbers are not a numbers or too big or not positive.")));
+    }
 }
