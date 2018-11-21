@@ -83,7 +83,7 @@ public class FizzBuzzServiceImplTest {
     }
 
     @Test
-    public void isReplacementBuzzBuzzCorrect() {
+    public void isReplacementFizzBuzzCorrect() {
         ResponseFizzBuzz response = fizzBuzzService.replacementProcess(Arrays.asList("1", "2", "15"));
 
         assertEquals(response.getReplacedList(), Arrays.asList("1", "2", "Fizz Buzz"));
