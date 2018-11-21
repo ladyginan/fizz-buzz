@@ -49,4 +49,4 @@ Applications connect through  HTTP requests.
 1. Add validation to the frontend part.
 2. Add popup window for notifications 
 3. Frontend tests.
-4. Create documentation for REST endpoints
+4. Create documentation for REST endpoints.
