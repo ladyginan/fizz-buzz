@@ -46,7 +46,7 @@ Applications are connecting through HTTP requests.
 
 ## What can be improved
 
-1. Adding validation on the front end part.
+1. Adding validation on the frontend part.
 2. Adding popup window on the UI with respounse information.
 3. Frontend tests.
 4. Generate documentation.
