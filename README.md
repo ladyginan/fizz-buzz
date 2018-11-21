@@ -41,12 +41,12 @@ After you can go to a browser at http://localhost:8080.
 
 The backend was written in Java with Spring Boot and built with maven. This application can start on embedded tomcat.
 
-The frontend was created with vueJs by vue-cli. The frontend has one UI interfaces with an input field and a submit button. 
-Applications are connecting through HTTP requests. 
+The frontend was created with vueJs by vue-cli. The frontend have one page with input field. 
+Applications connect through  HTTP requests.
 
 ## What can be improved
 
-1. Adding validation to the frontend part.
-2. Adding popup window on the UI with response information.
+1. Add validation to the frontend part.
+2. Add popup window for notifications 
 3. Frontend tests.
-4. Generate documentation.
+4. Create documentation for REST endpoints
