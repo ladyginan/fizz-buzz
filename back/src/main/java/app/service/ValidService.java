@@ -12,5 +12,12 @@ public interface ValidService {
      */
     boolean isValidSizeOfNumber(List<String> list);
 
+    /**
+     * Validation method.
+     * If element is negative, it is not valid.
+     *
+     * @param list List of String elements from user's input
+     * @return boolean
+     */
     boolean isPositiveNumber(List<String> list);
 }

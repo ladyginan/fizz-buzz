@@ -1,8 +1,6 @@
 package app.service.impl;
 
 import app.service.ValidService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 @Service
 public class ValidationServiceImpl implements ValidService {
 
-    private static final Logger log = LoggerFactory.getLogger(ValidService.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ValidService.class);
     private boolean valid;
 
     public boolean isValidSizeOfNumber(List<String> list) {
@@ -20,7 +18,7 @@ public class ValidationServiceImpl implements ValidService {
                 x -> {
                     if (x.length() > 18) {
                         valid = false;
-                        log.info("This number has extra size - " + x);
+                        log.info("This number have extra size - " + x);
                     }
                 }
         );
