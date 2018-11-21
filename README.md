@@ -11,13 +11,13 @@ more information: https://en.wikipedia.org/wiki/Fizz_buzz
 
 The project has two part: backend and frontend.
 
-For build backend of application
+For build backend of the application
 
 ```
 maven clean install  
 ```
  
- For launch backend of application
+ For launch backend of the application
  
  ```
  maven spring-boot:run
@@ -35,7 +35,7 @@ npm run serve
 ```
 
  
-After you can go to a browser at http://localhost:8080.
+After you can go to a browser at http://localhost:8080. 
 
 ## Technology
 
@@ -46,7 +46,7 @@ Applications are connecting through HTTP requests.
 
 ## What can be improved
 
-1. Adding validation on the frontend part.
-2. Adding popup window on the UI with respounse information.
+1. Adding validation to the frontend part.
+2. Adding popup window on the UI with response information.
 3. Frontend tests.
 4. Generate documentation.
