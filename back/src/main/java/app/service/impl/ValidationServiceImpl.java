@@ -1,6 +1,6 @@
 package app.service.impl;
 
-import app.service.ValidService;
+import app.service.ValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ValidationServiceImpl implements ValidService {
+public class ValidationServiceImpl implements ValidationService {
 
-    private static final Logger log = LoggerFactory.getLogger(ValidService.class);
+    private static final Logger log = LoggerFactory.getLogger(ValidationService.class);
 
     @Override
     public boolean isValidSizeOfNumber(List<String> list) {

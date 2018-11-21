@@ -21,7 +21,7 @@ public class ValidationServiceImplTest {
     private List<String> negativeValues;
 
     @Autowired
-    private ValidService validationService;
+    private ValidationService validationService;
 
     @Before
     public void init() {

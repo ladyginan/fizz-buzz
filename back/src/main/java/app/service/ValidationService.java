@@ -2,7 +2,7 @@ package app.service;
 
 import java.util.List;
 
-public interface ValidService {
+public interface ValidationService {
     /**
      * This method check elements from List<String> for valid.
      * If element have size more then 18, it is not valid.

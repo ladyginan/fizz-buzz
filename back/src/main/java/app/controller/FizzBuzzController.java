@@ -1,7 +1,7 @@
 package app.controller;
 
 import app.service.FizzBuzzService;
-import app.service.ValidService;
+import app.service.ValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +18,17 @@ public class FizzBuzzController {
 
     private static final Logger log = LoggerFactory.getLogger(FizzBuzzController.class);
     private final FizzBuzzService fizzBuzzService;
-    private final ValidService validService;
+    private final ValidationService validationService;
 
     @Autowired
-    public FizzBuzzController(FizzBuzzService fizzBuzzService, ValidService validService) {
+    public FizzBuzzController(FizzBuzzService fizzBuzzService, ValidationService validationService) {
         this.fizzBuzzService = fizzBuzzService;
-        this.validService = validService;
+        this.validationService = validationService;
     }
 
     @GetMapping(path = "/fizzBuzz/{numbers}")
     public ResponseEntity filterFizzBuzz(@PathVariable List<String> numbers) {
-        if (validService.isNumber(numbers) && validService.isValidSizeOfNumber(numbers) && validService.isPositiveNumber(numbers)) {
+        if (validationService.isNumber(numbers) && validationService.isValidSizeOfNumber(numbers) && validationService.isPositiveNumber(numbers)) {
             try {
                 return new ResponseEntity<>(fizzBuzzService.replacementProcess(numbers), HttpStatus.OK);
             } catch (NumberFormatException e) {
