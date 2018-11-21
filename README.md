@@ -26,7 +26,7 @@ maven clean install
 For frontend setup
 
  ```
- $npm install
+ npm install
 ```
 
 Compiles and hot-reloads frontend for development
