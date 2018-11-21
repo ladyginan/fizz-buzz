@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +18,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @RestController
-@RequestMapping
-public class FizzBuzzController implements Serializable {
+public class FizzBuzzController {
 
     private static final Logger log = LoggerFactory.getLogger(FizzBuzzController.class);
     private final FizzBuzzService fizzBuzzService;
@@ -30,7 +30,7 @@ public class FizzBuzzController implements Serializable {
         this.validService = validService;
     }
 
-    @PostMapping("/fizzBuzz")
+    @PostMapping(path = "/fizzBuzz", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseFizzBuzz> filterFizzBuzz(@RequestBody List<String> list) {
         try {
             if (validService.isValidSizeOfNumber(list) && validService.isPositiveNumber(list)) {
@@ -38,7 +38,7 @@ public class FizzBuzzController implements Serializable {
             }
         } catch (NumberFormatException e) {
             log.debug("This number is invalid.");
-            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
